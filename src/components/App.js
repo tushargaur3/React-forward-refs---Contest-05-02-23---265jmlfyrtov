@@ -1,26 +1,30 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import '../styles/App.css';
 import InputField from './InputField.js';
-
 const App = () => {
- 
-  const newRef = useRef();
-  const [values, setValues] = useState("");
- 
- const focusinput = () => {
-  newRef.current.focus();
- };
- const settingValue = () => {
-  setValues(newRef.current.value);
- }
- return (
-   <div>
-    <InputField  ref={newRef}  type="text"/><br/>
-    <button id="settingValueButton" onClick={settingValue}>Set Value</button>
-    <button id="focusInputButton" onClick={focusInput}>Focus the input</button><br/><br/>
-    <textarea id="textarea" defaultvalue={values}></textarea>
 
-   </div>
+  const [value2, setValue2] = useState("");
+  const [value, setValue] = useState("");
+  const newRef = useRef(null);
+
+  const settingValue = () => {
+    setValue2(value);
+    setValue("");
+  }
+  const focusInput = (event) => {
+    newRef.current.focus();
+  }
+  const handle = () => { }
+
+
+  return (
+    <div>
+      <InputField ref={newRef} type="text" value={value} setValue={setValue} /><br />
+      <button id="settingValueButton" onClick={settingValue}>Set Value</button>
+      <button id="focusInputButton" onClick={focusInput}>Focus the input</button><br /><br />
+      <textarea id="textarea" value={value2} onChange={handle}  ></textarea>
+
+    </div>
   );
 }
 
